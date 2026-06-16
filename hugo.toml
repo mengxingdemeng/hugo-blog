@@ -1,0 +1,10 @@
+# 等后面建好Gitee仓库再替换这里地址
+baseURL = "https://a-awakened-dream.gitee.io/hugo-blog/"
+locale = "zh-cn"
+title = "我的个人博客"
+theme = "FixIt"
+publishDir = "docs"
+
+[params]
+  defaultTheme = "auto"
+  mainSections = ["posts"]

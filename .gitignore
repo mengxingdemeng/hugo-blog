@@ -1,0 +1,8 @@
+-e "public/\nresources/\ndocs/\n.hugo_build.lock\n.hugo_cache/\n*.log\n.DS_Store" 
+public/ 
+resources/ 
+docs/ 
+.hugo_build.lock 
+.hugo_cache/ 
+*.log 
+.DS_Store 
