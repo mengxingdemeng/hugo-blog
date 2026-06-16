@@ -1,8 +1,13 @@
--e "public/\nresources/\ndocs/\n.hugo_build.lock\n.hugo_cache/\n*.log\n.DS_Store" 
-public/ 
-resources/ 
-docs/ 
-.hugo_build.lock 
-.hugo_cache/ 
-*.log 
-.DS_Store 
+# Hugo编译/缓存产物
+public/
+resources/
+docs/
+.hugo_build.lock
+.hugo_cache/
+
+# 日志
+*.log
+
+# Mac残留文件
+.DS_Store
+

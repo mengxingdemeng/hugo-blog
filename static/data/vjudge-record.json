@@ -1,0 +1,15 @@
+{
+  "dateList": [
+    "2026-06-16"
+  ],
+  "countList": [
+    3
+  ],
+  "records": [
+    {
+      "date": "2026-06-16",
+      "daily": 3,
+      "total": 3
+    }
+  ]
+}
