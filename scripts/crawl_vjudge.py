@@ -1,18 +1,24 @@
 import requests
 import json
 import os
+import hashlib
 from datetime import datetime, timedelta
 import time
 import re
+import subprocess
 
-# ========== 配置区 ==========
+# ========== 统一配置区 ==========
 VJUDGE_USERNAME = "liulixian"
 DATA_FILE = "static/data/vjudge-record.json"
 BASE_URL = f"https://vjudge.net/user/{VJUDGE_USERNAME}"
+GIT_BRANCH = "main"
+SIMULATE_DAY_RANGE = 30
+SIMULATE_MIN_DAY = 1
+SIMULATE_MAX_DAY = 8
+REQUEST_DELAY = 1
+# =================================
 
 def get_vjudge_data():
-    """抓取 Vjudge 用户数据"""
-    # 自动创建data目录
     data_dir = os.path.dirname(DATA_FILE)
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
@@ -24,20 +30,17 @@ def get_vjudge_data():
         "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
         "Connection": "keep-alive",
     }
-    
+
     print(f"正在访问 Vjudge: {BASE_URL}")
-    
+    time.sleep(REQUEST_DELAY)
+
     try:
         resp = requests.get(BASE_URL, headers=headers, timeout=15)
         resp.raise_for_status()
     except requests.exceptions.RequestException as e:
         raise Exception(f"网络请求失败: {e}")
-    
-    # 使用正则提取总解题数
-    # Vjudge 页面通常包含 "Solved: 数字" 或 "AC: 数字"
+
     text = resp.text
-    
-    # 多种匹配模式
     patterns = [
         r'Solved[:：]\s*(\d+)',
         r'AC[:：]\s*(\d+)',
@@ -45,17 +48,15 @@ def get_vjudge_data():
         r'<span[^>]*>Solved<\/span>\s*<span[^>]*>(\d+)<\/span>',
         r'<span[^>]*>AC<\/span>\s*<span[^>]*>(\d+)<\/span>',
     ]
-    
+
     total_solved = 0
     for pattern in patterns:
         match = re.search(pattern, text, re.IGNORECASE)
         if match:
             total_solved = int(match.group(1))
             break
-    
-    # 如果正则匹配失败，尝试从文本中查找
+
     if total_solved == 0:
-        # 寻找包含 "Solved" 或 "AC" 的数字
         lines = text.split('\n')
         for line in lines:
             if 'Solved' in line or 'AC' in line:
@@ -63,176 +64,136 @@ def get_vjudge_data():
                 if numbers:
                     total_solved = int(numbers[0])
                     break
-    
+
     if total_solved == 0:
-        raise Exception("未能抓取到总做题数，请检查用户名是否正确或页面结构已变更")
-    
+        raise Exception("未能抓取到总做题数，请检查用户名或页面结构变更")
+
     today_str = datetime.now().strftime("%Y-%m-%d")
     print(f"✅ 抓取成功，累计总题量：{total_solved}，今日日期：{today_str}")
-    
     return total_solved, today_str
 
 def update_record(total_solved, today_str):
-    """更新刷题记录"""
-    # 读取历史数据
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
         print(f"读取历史数据，共 {len(data.get('records', []))} 条记录")
     else:
-        # 创建初始数据（向前推30天生成模拟数据）
         print("首次运行，生成初始数据...")
         data = generate_initial_data(total_solved, today_str)
-    
-    # 判断今日记录是否存在
-    exist_today = any(r["date"] == today_str for r in data.get("records", []))
-    
+
+    records = data.setdefault("records", [])
+    dateList = data.setdefault("dateList", [])
+    countList = data.setdefault("countList", [])
+
+    exist_today = any(r["date"] == today_str for r in records)
+
     if exist_today:
-        # 找到昨天的总量
         last_total = 0
-        for rec in reversed(data["records"]):
+        for rec in reversed(records):
             if rec["date"] != today_str:
                 last_total = rec["total"]
                 break
-        
         daily_add = total_solved - last_total
-        
-        # 更新今日行
-        for idx, rec in enumerate(data["records"]):
+
+        for idx, rec in enumerate(records):
             if rec["date"] == today_str:
-                data["records"][idx]["daily"] = daily_add
-                data["records"][idx]["total"] = total_solved
-                if idx < len(data["countList"]):
-                    data["countList"][idx] = daily_add
+                rec["daily"] = daily_add
+                rec["total"] = total_solved
+                countList[idx] = daily_add
                 break
-        
+
+        if daily_add < 0:
+            print(f"⚠️  检测到总题量回落，差值：{daily_add}，图表置0")
+            daily_add = 0
         print(f"🔄 更新今日记录，当日新增：{daily_add}")
     else:
-        # 新增今日记录
-        if len(data.get("records", [])) == 0:
+        if len(records) == 0:
             daily_add = total_solved
         else:
-            daily_add = total_solved - data["records"][-1]["total"]
-        
-        # 确保 daily_add 不为负数
+            daily_add = total_solved - records[-1]["total"]
         if daily_add < 0:
+            print(f"⚠️  检测到总题量回落，差值：{daily_add}，置0")
             daily_add = 0
-        
-        data.setdefault("dateList", []).append(today_str)
-        data.setdefault("countList", []).append(daily_add)
-        data.setdefault("records", []).append({
-            "date": today_str, 
-            "daily": daily_add, 
-            "total": total_solved
-        })
-        
-        print(f"➕ 新增今日记录，当日新增：{daily_add}")
-    
-    # 添加更新时间
+
+        dateList.append(today_str)
+        countList.append(daily_add)
+        records.append({"date": today_str, "daily": daily_add, "total": total_solved})
+
     data["updateTime"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    # 写入JSON
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    
     print(f"💾 数据已保存至 {DATA_FILE}")
     return data
 
 def generate_initial_data(current_total, today_str):
-    """生成初始模拟数据（用于首次运行）"""
-    data = {
-        "dateList": [],
-        "countList": [],
-        "records": [],
-        "updateTime": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    }
-    
-    # 从30天前开始生成模拟数据
-    start_date = datetime.now() - timedelta(days=30)
-    total = current_total
-    
-    # 生成每天的数据（模拟每天做1-8题）
-    current_date = start_date
-    while current_date <= datetime.now():
+    data = {"dateList": [], "countList": [], "records": [], "updateTime": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+    end_day = datetime.strptime(today_str, "%Y-%m-%d")
+    start_day = end_day - timedelta(days=SIMULATE_DAY_RANGE)
+    current_total_back = current_total
+
+    current_date = start_day
+    while current_date <= end_day:
         date_str = current_date.strftime("%Y-%m-%d")
-        # 随机生成每天做题数（1-8题），使用hash保证一致性
-        daily = (hash(date_str) % 8) + 1
-        total += daily
-        
+        hash_obj = hashlib.sha256(date_str.encode("utf8"))
+        num_hash = int.from_bytes(hash_obj.digest(), byteorder="big")
+        daily = (num_hash % (SIMULATE_MAX_DAY - SIMULATE_MIN_DAY + 1)) + SIMULATE_MIN_DAY
+
         data["dateList"].append(date_str)
         data["countList"].append(daily)
-        data["records"].append({
-            "date": date_str,
-            "daily": daily,
-            "total": total
-        })
-        
+        data["records"].append({"date": date_str, "daily": daily, "total": current_total_back})
+        current_total_back -= daily
         current_date += timedelta(days=1)
-    
+
     print(f"📊 生成初始数据：{len(data['records'])} 条记录")
     return data
 
+def git_commit_push():
+    print("\n🔄 开始提交代码到Git...")
+    try:
+        subprocess.run(["git", "add", "."], check=True, capture_output=True, text=True)
+        commit_msg = f'auto update vjudge record {datetime.now().strftime("%Y-%m-%d")}'
+        subprocess.run(["git", "commit", "-m", commit_msg], check=True, capture_output=True, text=True)
+        push_res = subprocess.run(["git", "push", "origin", GIT_BRANCH], capture_output=True, text=True)
+        if push_res.returncode != 0:
+            raise Exception(f"推送失败：{push_res.stderr}")
+        print("✅ Git提交推送完成！")
+    except subprocess.CalledProcessError as e:
+        print(f"⚠️ Git操作失败（可忽略）: {e.stderr if e.stderr else str(e)}")
+
 def run_task():
-    """执行主任务"""
     print("\n" + "="*50)
     print(f"⏰ 开始执行任务 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("="*50)
-    
     try:
-        # 1. 抓取数据
         total_solved, today_str = get_vjudge_data()
-        
-        # 2. 更新记录
         data = update_record(total_solved, today_str)
-        
-        # 3. 显示统计信息
         print(f"\n📊 当前统计:")
         print(f"   - 总记录数: {len(data.get('records', []))}")
         print(f"   - 最后更新: {data.get('updateTime', '未知')}")
-        
-        # 4. Git提交推送（可选）
-        try:
-            print("\n🔄 开始提交代码到Git...")
-            os.system("git add .")
-            commit_msg = f'auto update vjudge record {datetime.now().strftime("%Y-%m-%d")}'
-            os.system(f'git commit -m "{commit_msg}"')
-            os.system("git push origin main")
-            print("✅ Git提交完成！")
-        except Exception as e:
-            print(f"⚠️ Git提交失败（可忽略）: {e}")
-        
+        git_commit_push()
         print("\n✅ 全部任务执行完成！")
-        
     except Exception as e:
         print(f"\n❌ 执行失败：{str(e)}")
         import traceback
         traceback.print_exc()
 
 def main():
-    """主函数"""
     print("="*50)
-    print("🚀 Vjudge刷题统计脚本 v2.0")
+    print("🚀 Vjudge刷题统计脚本 v2.1 修复版")
     print("="*50)
     print(f"👤 用户名: {VJUDGE_USERNAME}")
     print(f"📁 数据文件: {DATA_FILE}")
+    print(f"🌿 Git分支: {GIT_BRANCH}")
     print("="*50)
-    
-    # 先手动执行一次测试
     run_task()
-    
-    # 如果需要定时运行，取消注释下面的代码
+
+    # #定时任务取消注释启用
     # import schedule
-    # schedule.every().day.at("01:00").do(run_task)  # 每天凌晨1点执行
-    # 
-    # print("\n⏰ 已设置定时任务（每天01:00执行）")
-    # print("按 Ctrl+C 停止程序\n")
-    # 
-    # try:
-    #     while True:
-    #         schedule.run_pending()
-    #         time.sleep(60)
-    # except KeyboardInterrupt:
-    #     print("\n程序已停止")
+    # schedule.every().day.at("01:00").do(run_task)
+    # print("\n⏰ 已设置定时任务（每天01:00执行），Ctrl+C停止")
+    # while True:
+    #     schedule.run_pending()
+    #     time.sleep(60)
 
 if __name__ == "__main__":
     main()

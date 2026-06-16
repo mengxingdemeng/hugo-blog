@@ -1,5 +1,6 @@
 # 等后面建好Gitee仓库再替换这里地址
 baseURL = "https://a-awakened-dream.gitee.io/hugo-blog/"
+# baseURL = "http://localhost:1313/hugo-blog/"
 locale = "zh-cn"
 title = "My Coding"
 theme = "FixIt"
