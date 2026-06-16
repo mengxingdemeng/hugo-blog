@@ -34,3 +34,7 @@ name = "Categories"
 url = "/categories/"
 weight = 3
 
+[[menu.main]]
+name = "Vjudge刷题"
+url = "/vjudge/"
+weight = 4

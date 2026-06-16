@@ -3,13 +3,14 @@
     "2026-06-16"
   ],
   "countList": [
-    3
+    18
   ],
   "records": [
     {
       "date": "2026-06-16",
-      "daily": 3,
-      "total": 3
+      "daily": 18,
+      "total": 18
     }
-  ]
+  ],
+  "updateTime": "2026-06-16 14:37:37"
 }
