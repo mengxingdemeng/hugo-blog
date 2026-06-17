@@ -20,6 +20,7 @@ publishingDir = "docs"
   # 新增 about，不再被强制归档列表模板覆盖
   mainSections = ["posts"]
 
+
 [[menu.main]]
 name = "首页"
 url = "/"
