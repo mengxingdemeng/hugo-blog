@@ -23,10 +23,20 @@ collections:
     format: yaml-frontmatter
     fields:
       - {label: "文章标题", name: title, widget: string}
-      - {label: "发布时间", name: date, widget: datetime}
+      - label: "发布时间"
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DDTHH:mm:ss+08:00"
+        date_format: "YYYY/MM/DD"
+        time_format: "HH:mm"
       - {label: "是否草稿", name: draft, widget: boolean, default: false}
       - {label: "文章简介", name: description, widget: text, required: false}
       - {label: "分类", name: categories, widget: list, required: false}
       - {label: "标签", name: tags, widget: list, required: false}
-      - {label: "封面图", name: featuredImage, widget: image, required: false}
+      - label: "封面图"
+        name: featuredImage
+        widget: image
+        media_folder: "static/uploads"
+        public_folder: "/hugo-blog/uploads"
+        required: false
       - {label: "正文内容", name: body, widget: markdown}
