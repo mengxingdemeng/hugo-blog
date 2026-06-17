@@ -3,8 +3,11 @@
 # 等后面建好Gitee仓库部署时再打开这行，注释上面本地地址
 # baseURL = "https://a-awakened-dream.gitee.io/hugo-blog/"
 
+# GitHub Pages线上地址
+baseURL = "https://mengxingdemeng.github.io/hugo-blog/"
+
 # 线上正式地址（现在启用）
-baseURL = "https://hugo-blog-gamma-two.vercel.app/"
+# baseURL = "https://hugo-blog-gamma-two.vercel.app/"
 # 本地调试时再打开这条，线上注释掉
 # baseURL = "http://localhost:1313/hugo-blog/"
 locale = "zh-cn"

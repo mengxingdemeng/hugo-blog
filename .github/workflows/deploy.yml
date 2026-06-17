@@ -1,0 +1,43 @@
+name: Deploy Hugo Blog
+
+# 触发规则：手动运行 + 推送main分支 + 每日定时重建（和你旧Hexo逻辑一致）
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '1 16 * * *'  # UTC16:01 = 北京时间00:01自动构建
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 拉取完整代码（包含主题子模块，对应你submodules: true）
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: true
+
+      # 2. 安装Hugo扩展版（Hugo不需要Node，删掉hexo/node相关步骤）
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: latest
+          extended: true  # 扩展版支持SCSS/图片处理，和你Hexo完整构建对齐
+
+      # 3. Hugo打包静态文件（等价 hexo clean + hexo generate）
+      - name: Build Hugo Site
+        run: |
+          hugo --gc --minify --baseURL "https://mengxingdemeng.github.io/hugo-blog/"
+          ls -lh
+          ls -lh public/
+
+      # 4. 部署到gh-pages分支，完全沿用你熟悉的gh-pages配置
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Hugo无需私人ACCESS_TOKEN，内置token够用
+          publish_dir: ./public
+          publish_branch: gh-pages
+          force_orphan: true # 清空分支冗余文件，和你旧配置保持一致
