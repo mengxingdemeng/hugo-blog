@@ -1,0 +1,36 @@
+# 站点域名
+site_url: https://liulixian1.dpdns.org
+display_url: https://liulixian1.dpdns.org
+
+# GitHub仓库后端（已填好你的仓库地址，无需修改repo）
+backend:
+  name: github
+  repo: mengxingdemeng/hugo-blog
+  branch: main
+  base_url: https://auth.sveltiacms.app
+  auth:
+    client_id: Ov23li0obatAEyxpFdOo
+
+# 图片上传目录（Hugo标准路径，不用改）
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+# 文章配置（适配FixIt主题，分类、标签、封面、草稿全部支持）
+collections:
+  - name: posts
+    label: 博客文章
+    label_singular: 文章
+    folder: content/posts
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    fields:
+      - {label: "文章标题", name: title, widget: string}
+      - {label: "发布时间", name: date, widget: datetime}
+      - {label: "是否草稿", name: draft, widget: boolean, default: false}
+      - {label: "文章简介", name: description, widget: text, required: false}
+      - {label: "分类", name: categories, widget: list, required: false}
+      - {label: "标签", name: tags, widget: list, required: false}
+      - {label: "封面图", name: featuredImage, widget: image, required: false}
+      - {label: "正文内容", name: body, widget: markdown}
