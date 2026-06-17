@@ -9,7 +9,6 @@ backend:
   auth:
     client_id: Ov23li0obatAEyxpFd0o
 
-# 图片路径适配子站点
 media_folder: "static/uploads"
 public_folder: "/hugo-blog/uploads"
 
