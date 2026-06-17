@@ -1,13 +1,15 @@
-# 等后面建好Gitee仓库再替换这里地址
-baseURL = "https://a-awakened-dream.gitee.io/hugo-blog/"
-# baseURL = "http://localhost:1313/hugo-blog/"
+# 本地开发启用
+baseURL = "http://localhost:1313/hugo-blog/"
+# 等后面建好Gitee仓库部署时再打开这行，注释上面本地地址
+# baseURL = "https://a-awakened-dream.gitee.io/hugo-blog/"
 locale = "zh-cn"
 title = "My Coding"
 theme = "FixIt"
-publishDir = "docs"
+publishingDir = "docs"
 
 [params]
   defaultTheme = "auto"
+  # 新增 about，不再被强制归档列表模板覆盖
   mainSections = ["posts"]
 
 [[menu.main]]
@@ -21,21 +23,28 @@ url = "/posts/"
 weight = 2
 
 [[menu.main]]
-name = "关于我"
-url = "/about/"
-weight = 9
-
-[[menu.main]]
-name = "Tags"
-url = "/tags/"
-weight = 4
-
-[[menu.main]]
 name = "Categories"
 url = "/categories/"
 weight = 3
 
+
 [[menu.main]]
 name = "Vjudge刷题"
-url = "/vjudge/"
-weight = 4
+url = "https://vjudge.net/user/liulixian"
+weight = 6
+
+[[menu.main]]
+name = "关于我"
+url = "/about-me/"
+weight = 9
+
+
+[[menu.main]]
+name = "题单研习"
+url = "/tidan/"
+weight = 9
+
+ignoreLogs = [
+  "warning-goldmark-raw-html",
+  "deprecated .Site.LanguageCode"
+]
