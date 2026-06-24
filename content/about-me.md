@@ -130,25 +130,21 @@ type: page
       <h1>liulixian</h1>
       <div class="info-sub">xbmu | 19 years old</div>
       <div class="info-tags">
-        <span class="tag">C/C++</span>
+        <span class="tag">C</span>
         <span class="tag">算法竞赛</span>
         <span class="tag">Hugo博客</span>
-        <span class="tag">Web前端</span>
-        <span class="tag">Linux</span>
       </div>
       <div class="desc-box">
-        热爱算法与程序设计，常年泡OJ刷题，专注ICPC/蓝桥杯竞赛；
-        喜欢折腾博客、服务器、前端美化。平时记录刷题笔记、竞赛总结与学习心得。
-        持续刷题提升代码能力，不断沉淀技术与竞赛荣誉。
+        下一场雨，天地清明……
       </div>
     </div>
   </div>
   <div class="split-line"></div>
-  <h2 style="text-align:center;font-size:28px;color:#ddd;margin-bottom:30px;">个人栏目导航</h2>
+  <h2 style="text-align:center;font-size:28px;color:#ddd;margin-bottom:30px;">导航</h2>
   <div class="card-grid">
     <a href="/hugo-blog/about/honor/" class="func-card" style="text-decoration:none;">
       <h3>🏆 荣誉墙</h3>
-      <p>竞赛获奖、省赛金奖、各类证书汇总，记录所有竞赛成果</p>
+      <p>各类证书汇总，记录所有竞赛成果</p>
     </a>
     <a href="#" class="func-card" style="text-decoration:none;">
       <h3>💻 技能栈</h3>
@@ -156,7 +152,7 @@ type: page
     </a>
     <a href="https://vjudge.net/user/liulixian" target="_blank" class="func-card" style="text-decoration:none;">
       <h3>📚 Vjudge刷题主页</h3>
-      <p>跳转Vjudge个人主页，查看实时做题数据与热力日历</p>
+      <p>Vjudge个人主页，查看实时做题数据与热力日历</p>
     </a>
     <a href="/hugo-blog/posts/" class="func-card" style="text-decoration:none;">
       <h3>📝 全部学习笔记</h3>

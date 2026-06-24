@@ -8,6 +8,8 @@ tocCollapsed = false
 description = "题单研习专栏，各类算法刷题整理"
 comment = false
 +++
+
+## 6.26——6.30 [vjudge动态规划题单](https://vjudge.net/article/14538)
 # [力扣周赛](https://leetcode.cn/contest/)
 - 周赛：每周六22:30
 - 双周赛：每周日10:30
