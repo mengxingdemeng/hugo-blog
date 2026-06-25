@@ -10,6 +10,7 @@ comment = false
 +++
 
 ## 6.26——6.30 [vjudge动态规划题单](https://vjudge.net/article/14538)
+## [灵神的dp题单](https://leetcode.cn/discuss/post/3581838/fen-xiang-gun-ti-dan-dong-tai-gui-hua-ru-007o/)
 # [力扣周赛](https://leetcode.cn/contest/)
 - 周赛：每周六22:30
 - 双周赛：每周日10:30
