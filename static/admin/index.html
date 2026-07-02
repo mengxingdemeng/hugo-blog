@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </body>
 </html> -->
 
-<!doctype html>
+<!-- <!doctype html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
@@ -68,7 +68,7 @@ window.addEventListener('DOMContentLoaded', () => {
 <title>博客线上编辑后台</title>
 
 <!-- 优先拦截JS动态插入的谷歌字体link标签 -->
-<script>
+<!-- <script>
 const origAppend = document.head.appendChild.bind(document.head);
 document.head.appendChild = function(el) {
   if (el?.tagName === 'LINK' && el.href?.includes('fonts.googleapis.com')) {
@@ -76,10 +76,10 @@ document.head.appendChild = function(el) {
   }
   return origAppend(el);
 };
-</script>
+</script> -->
 
 <!-- 兜底本地系统字体，避免界面字体缺失错乱 -->
-<style>
+<!-- <style>
 @font-face {
   font-family: 'Merriweather Sans';
   src: local("Microsoft YaHei"), local("SimHei"), local("Arial");
@@ -109,5 +109,32 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+</body>
+</html>  -->
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>博客线上编辑后台</title>
+  <!-- Sveltia 配置文件路径 -->
+  <link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+</head>
+<body>
+  <!-- 同步加载核心脚本，保证全局 SVELTIA 提前定义 -->
+  <script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js" crossorigin="anonymous"></script>
+  
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.SVELTIA) {
+        SVELTIA.start();
+      } else {
+        document.body.innerHTML = '<h2>CMS 加载失败</h2>请刷新页面或检查网络连接';
+      }
+    });
+  </script>
 </body>
 </html>
