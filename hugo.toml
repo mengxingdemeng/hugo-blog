@@ -57,3 +57,4 @@ ignoreLogs = [
   "warning-goldmark-raw-html",
   "deprecated .Site.LanguageCode"
 ]
+

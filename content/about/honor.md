@@ -180,6 +180,7 @@ parent: "关于我"
   <div class="cert-item">
     <div class="cert-img-box">
       <img src="/hugo-blog/images/cert/2026年码蹄杯省赛学生证书.jpg" alt="码蹄杯省级金奖证书" class="cert-img">
+     
     </div>
     <h4 class="cert-name">码蹄杯程序设计大赛 省级金奖</h4>
     <div class="cert-time">2026 · 05</div>
