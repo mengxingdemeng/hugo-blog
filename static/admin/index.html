@@ -112,7 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </body>
 </html>  -->
 
-
+<!-- 
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -120,12 +120,12 @@ window.addEventListener('DOMContentLoaded', () => {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>博客线上编辑后台</title>
-  <!-- Sveltia 配置文件路径 -->
+  Sveltia 配置文件路径
   <link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
 </head>
 <body>
-  <!-- 同步加载核心脚本，保证全局 SVELTIA 提前定义 -->
-  <script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js" crossorigin="anonymous"></script>
+  同步加载核心脚本，保证全局 SVELTIA 提前定义
+   <script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js" crossorigin="anonymous"></script>
   
   <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -136,5 +136,23 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   </script>
+</body>
+</html>  -->
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+</head>
+<body>
+<script src="./sveltia-cms.js"
+crossorigin="anonymous"
+onload="SVELTIA.start()"
+onerror="document.body.innerHTML='CMS本地脚本缺失，请检查文件部署'">
+</script>
 </body>
 </html>
