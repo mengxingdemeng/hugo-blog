@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </body>
 </html>  -->
 
-<!doctype html>
+<!-- <!doctype html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
@@ -153,6 +153,25 @@ window.addEventListener('DOMContentLoaded', () => {
 crossorigin="anonymous"
 onload="SVELTIA.start()"
 onerror="document.body.innerHTML='CMS本地脚本缺失，请检查文件部署'">
+</script>
+</body>
+</html> -->
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+</head>
+<body>
+<!-- 完整绝对路径，强制浏览器发起JS请求 -->
+<script src="/hugo-blog/admin/sveltia-cms.js"></script>
+<script>
+// 脚本加载完立刻执行，不加延时
+SVELTIA.start();
 </script>
 </body>
 </html>
