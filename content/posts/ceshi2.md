@@ -104,5 +104,10 @@ repost:
 
 [![pmwVUPJ.png](https://s41.ax1x.com/2026/07/02/pmwVUPJ.png)](https://imgchr.com/i/pmwVUPJ)
 
-
 [![pmwVUPJ.png](https://s41.ax1x.com/2026/07/02/pmwVUPJ.png)](https://imgchr.com/i/pmwVUPJ)
+
+路过图床配置
+
+[![pmwVORs.md.png](https://s41.ax1x.com/2026/07/02/pmwVORs.md.png)](https://imgchr.com/i/pmwVORs)
+
+111
