@@ -14,7 +14,7 @@ onerror="document.body.innerHTML='CMS加载失败，请刷新页面'">
 <body></body>
 </html> -->
 
-<!doctype html>
+<!-- <!doctype html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
@@ -30,4 +30,31 @@ onerror="document.body.innerHTML='CMS加载失败，请刷新页面'">
 </script>
 </head>
 <body></body>
+</html> -->
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+
+<script defer
+src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"
+crossorigin="anonymous">
+</script>
+</head>
+<body>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.SVELTIA) {
+    SVELTIA.start();
+  } else {
+    document.body.innerHTML = '<h2>CMS 加载失败</h2><p>请刷新页面或检查网络连接</p>';
+  }
+});
+</script>
+</body>
 </html>
