@@ -32,6 +32,33 @@ onerror="document.body.innerHTML='CMS加载失败，请刷新页面'">
 <body></body>
 </html> -->
 
+<!-- <!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+
+<script defer
+src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"
+crossorigin="anonymous">
+</script>
+</head>
+<body>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.SVELTIA) {
+    SVELTIA.start();
+  } else {
+    document.body.innerHTML = '<h2>CMS 加载失败</h2><p>请刷新页面或检查网络连接</p>';
+  }
+});
+</script>
+</body>
+</html> -->
+
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -39,6 +66,32 @@ onerror="document.body.innerHTML='CMS加载失败，请刷新页面'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex" />
 <title>博客线上编辑后台</title>
+
+<!-- 优先拦截JS动态插入的谷歌字体link标签 -->
+<script>
+const origAppend = document.head.appendChild.bind(document.head);
+document.head.appendChild = function(el) {
+  if (el?.tagName === 'LINK' && el.href?.includes('fonts.googleapis.com')) {
+    return el;
+  }
+  return origAppend(el);
+};
+</script>
+
+<!-- 兜底本地系统字体，避免界面字体缺失错乱 -->
+<style>
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: local("Microsoft YaHei"), local("SimHei"), local("Arial");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  src: local("Segoe UI Symbol"), local("Arial Unicode MS");
+  font-display: swap;
+}
+</style>
+
 <link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
 
 <script defer
