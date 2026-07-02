@@ -105,3 +105,6 @@ repost:
 
 ### 下面的标题...
 
+路过图床配置
+
+[![pmwVORs.md.png](https://s41.ax1x.com/2026/07/02/pmwVORs.md.png)](https://imgchr.com/i/pmwVORs)
