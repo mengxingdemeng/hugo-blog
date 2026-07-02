@@ -198,15 +198,15 @@ window.onload = function() {
 </body>
 </html>  -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex" />
-<title>博客后台管理</title>
+<title>博客后台管理</title> -->
 <!-- 国内字体兜底，不破坏官方基础结构 -->
-<style>
+<!-- <style>
 @font-face {
   font-family: 'Merriweather Sans';
   src: local("Microsoft YaHei"), local("SimHei");
@@ -219,8 +219,52 @@ window.onload = function() {
 }
 </style>
 </head>
-<body>
+<body> -->
 <!-- jsDelivr CDN，国内比unpkg稳定，官方兼容写法 -->
-<script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客后台管理</title>
+<style>
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: local("Microsoft YaHei"), local("SimHei");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  src: local("Segoe UI Symbol");
+  font-display: swap;
+}
+/* 加载提示样式 */
+#cms-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: #555;
+  font-family: system-ui, sans-serif;
+}
+#cms-loading::after {
+  content: "⏳";
+  margin-left: 0.5rem;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+<div id="cms-loading">正在加载管理后台…</div>
+<script src="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.16.1/dist/sveltia-cms.js"></script>
 </body>
 </html>
