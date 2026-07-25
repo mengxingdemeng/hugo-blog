@@ -18,7 +18,8 @@ comment = false
 # [洛谷比赛](https://www.luogu.com.cn/contest/list) 
 
 # [Codeforces比赛](https://codeforces.com/contest) 
-
+# [算法竞赛进阶指南-vjudge题单](https://vjudge.net/article/3573)
+# [算法竞赛进阶指南-ACwing题单](https://www.acwing.com/activity/content/punch_the_clock/6/)
 
 # 一、算法基础题单
 ## 1.1 数学专题
