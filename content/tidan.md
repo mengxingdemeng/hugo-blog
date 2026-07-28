@@ -14,13 +14,13 @@ comment = false
 # [力扣周赛](https://leetcode.cn/contest/)
 - 周赛：每周六22:30
 - 双周赛：每周日10:30
-  
+#[牛客每日一题](https://www.nowcoder.com/problem/tracker#/daily)
 # [洛谷比赛](https://www.luogu.com.cn/contest/list) 
 
 # [Codeforces比赛](https://codeforces.com/contest) 
 # [算法竞赛进阶指南-vjudge题单](https://vjudge.net/article/3573)
 # [算法竞赛进阶指南-ACwing题单](https://www.acwing.com/activity/content/punch_the_clock/6/)
-
+# [算法竞赛进阶指南-牛客题单](https://ac.nowcoder.com/acm/archive/oi-advance)
 # 一、算法基础题单
 ## 1.1 数学专题
 ### 1.1.1 快速幂
