@@ -1,5 +1,5 @@
 +++
-title = "Tidan"
+title = "资源"
 date = "2026-06-17T16:40:03+08:00"
 draft = false
 layout = "single"

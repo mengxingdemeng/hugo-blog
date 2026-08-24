@@ -31,27 +31,36 @@ name = "文章"
 url = "/posts/"
 weight = 2
 
-[[menu.main]]
-name = "Categories"
-url = "/categories/"
-weight = 3
+# [[menu.main]]
+# name = "Categories"
+# url = "/categories/"
+# weight = 3
 
+[[menu.main]]
+name = "资源"
+url = "/sourecs/"
+weight = 4
 
 [[menu.main]]
-name = "Vjudge刷题"
+name = "Vjudge"
 url = "https://vjudge.net/user/liulixian"
+weight = 9
+
+[[menu.main]]
+name = "liuliu"
+url = "/about-me/"
+weight = 10
+
+
+[[menu.main]]
+name = "算法题单"
+url = "/tidan/"
 weight = 6
 
 [[menu.main]]
-name = "关于我"
-url = "/about-me/"
-weight = 9
-
-
-[[menu.main]]
-name = "题单研习"
-url = "/tidan/"
-weight = 9
+name = "java"
+url = "/java/"
+weight = 7
 
 ignoreLogs = [
   "warning-goldmark-raw-html",
