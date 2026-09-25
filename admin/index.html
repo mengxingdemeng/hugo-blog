@@ -1,0 +1,379 @@
+<!-- <!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+<script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"
+onload="SVELTIA.start()"
+onerror="document.body.innerHTML='CMS加载失败，请刷新页面'">
+</script>
+</head>
+<body></body>
+</html> -->
+
+<!-- <!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+
+<script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"
+  crossorigin="anonymous"
+  onload="SVELTIA.start()"
+  onerror="document.body.innerHTML='CMS加载失败，请刷新页面'">
+</script>
+</head>
+<body></body>
+</html> -->
+
+<!-- <!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+
+<script defer
+src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"
+crossorigin="anonymous">
+</script>
+</head>
+<body>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.SVELTIA) {
+    SVELTIA.start();
+  } else {
+    document.body.innerHTML = '<h2>CMS 加载失败</h2><p>请刷新页面或检查网络连接</p>';
+  }
+});
+</script>
+</body>
+</html> -->
+
+<!-- <!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+
+<!-- 优先拦截JS动态插入的谷歌字体link标签 -->
+<!-- <script>
+const origAppend = document.head.appendChild.bind(document.head);
+document.head.appendChild = function(el) {
+  if (el?.tagName === 'LINK' && el.href?.includes('fonts.googleapis.com')) {
+    return el;
+  }
+  return origAppend(el);
+};
+</script> -->
+
+<!-- 兜底本地系统字体，避免界面字体缺失错乱 -->
+<!-- <style>
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: local("Microsoft YaHei"), local("SimHei"), local("Arial");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  src: local("Segoe UI Symbol"), local("Arial Unicode MS");
+  font-display: swap;
+}
+</style>
+
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+
+<script defer
+src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"
+crossorigin="anonymous">
+</script>
+</head>
+<body>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.SVELTIA) {
+    SVELTIA.start();
+  } else {
+    document.body.innerHTML = '<h2>CMS 加载失败</h2><p>请刷新页面或检查网络连接</p>';
+  }
+});
+</script>
+</body>
+</html>  -->
+
+<!-- 
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>博客线上编辑后台</title>
+  Sveltia 配置文件路径
+  <link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+</head>
+<body>
+  同步加载核心脚本，保证全局 SVELTIA 提前定义
+   <script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js" crossorigin="anonymous"></script>
+  
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.SVELTIA) {
+        SVELTIA.start();
+      } else {
+        document.body.innerHTML = '<h2>CMS 加载失败</h2>请刷新页面或检查网络连接';
+      }
+    });
+  </script>
+</body>
+</html>  -->
+
+<!-- <!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+</head>
+<body>
+<script src="./sveltia-cms.js"
+crossorigin="anonymous"
+onload="SVELTIA.start()"
+onerror="document.body.innerHTML='CMS本地脚本缺失，请检查文件部署'">
+</script>
+</body>
+</html> -->
+
+<!-- <!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客线上编辑后台</title>
+<link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url" />
+</head>
+<body>
+完整绝对路径，强制浏览器发起JS请求 -->
+<!-- <script src="/hugo-blog/admin/sveltia-cms.js"></script>
+<script>
+// 脚本加载完立刻执行，不加延时
+SVELTIA.start();
+</script>
+</body>
+</html> --> 
+<!-- 
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>博客线上编辑后台</title>
+ CMS唯一必须读取的配置文件，保留 -->
+<!-- <link href="/hugo-blog/admin/config.yml" type="application/yaml" rel="cms-config-url">
+</head>
+<body>
+ CMS核心运行脚本，唯一依赖 -->
+<!-- <script src="/hugo-blog/admin/sveltia-cms.js"></script> -->
+<!-- 等页面全部加载完成再启动，时序最稳妥 -->
+<!-- <script>
+window.onload = function() {
+  SVELTIA.start();
+};
+</script>
+</body>
+</html>  -->
+
+<!-- <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客后台管理</title> -->
+<!-- 国内字体兜底，不破坏官方基础结构 -->
+<!-- <style>
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: local("Microsoft YaHei"), local("SimHei");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  src: local("Segoe UI Symbol");
+  font-display: swap;
+}
+</style>
+</head>
+<body> -->
+<!-- jsDelivr CDN，国内比unpkg稳定，官方兼容写法 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"></script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客后台管理</title>
+<style>
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: local("Microsoft YaHei"), local("SimHei");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  src: local("Segoe UI Symbol");
+  font-display: swap;
+}
+/* 加载提示样式 */
+#cms-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: #555;
+  font-family: system-ui, sans-serif;
+}
+#cms-loading::after {
+  content: "⏳";
+  margin-left: 0.5rem;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+<div id="cms-loading">正在加载管理后台…</div>
+<script src="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.16.1/dist/sveltia-cms.js"></script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>博客后台管理</title>
+<style>
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: local("Microsoft YaHei"), local("SimHei");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  src: local("Segoe UI Symbol");
+  font-display: swap;
+}
+#cms-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: #555;
+  font-family: system-ui, sans-serif;
+}
+#cms-loading::after {
+  content: "⏳";
+  margin-left: 0.5rem;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+<div id="cms-loading">正在加载管理后台…</div>
+使用您自己仓库中的 sveltia-cms.js -->
+<!-- <script src="./sveltia-cms.js"></script>
+</body>
+</html>  -->
+
+<!-- <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>博客后台管理</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>" />
+  <style>
+    @font-face {
+      font-family: 'Merriweather Sans';
+      src: local("Microsoft YaHei"), local("SimHei");
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Material Symbols Outlined';
+      src: local("Segoe UI Symbol");
+      font-display: swap;
+    }
+    #cms-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 1.2rem;
+      color: #555;
+      font-family: system-ui, sans-serif;
+    }
+    #cms-loading::after {
+      content: "⏳";
+      margin-left: 0.5rem;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="cms-loading">正在加载管理后台…</div>
+
+  <script src="/hugo-blog/admin/sveltia-cms.js" id="cmsScript"></script>
+  <script>
+    const scriptEl = document.getElementById('cmsScript');
+    
+    scriptEl.addEventListener('load', function() {
+      const loading = document.getElementById('cms-loading');
+      if (window.SVELTIA) {
+        if (typeof SVELTIA.start === 'function') {
+          SVELTIA.start();
+        }
+        loading.style.display = 'none';
+      } else {
+        loading.textContent = 'CMS 加载失败：SVELTIA 对象未定义';
+      }
+    });
+    
+    scriptEl.addEventListener('error', function() {
+      document.getElementById('cms-loading').textContent = 'CMS 脚本加载失败，请检查文件是否存在';
+    });
+  </script>
+</body>
+</html> -->
